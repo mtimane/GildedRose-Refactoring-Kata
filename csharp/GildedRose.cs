@@ -4,6 +4,7 @@ namespace csharp
 {
     public class GildedRose
     {
+        public static int MAX_QUALITY = 50;
         IList<Item> Items;
         public GildedRose(IList<Item> Items)
         {

@@ -23,7 +23,8 @@ def add_quality(item, quality=1):
     return item
 
 def remove_quality(item):
-    if item.sell_in<0 or CONJURED.lower() in item.name.lower(): quality=2
+    if item.sell_in<0 and (CONJURED.lower() in item.name.lower()): quality=4
+    elif item.sell_in<0 or CONJURED.lower() in item.name.lower(): quality=2
     else: quality=1
     if item.quality > 0 and item.quality-quality > 0:
         item.quality -= quality 
@@ -37,7 +38,7 @@ def add_quality_backstage(item):
     elif item.sell_in <= TEN_DAYS_OR_LESS:
         item=add_quality(item, TEN_DAYS_OR_LESS_QUALITY)
     return item
-    
+
 class GildedRose(object):
 
     def __init__(self, items):
@@ -45,13 +46,10 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if item.name not in QUALITY_INCREASE_NAMES and item.name not in LEGENDARY_NAMES:
-                remove_quality(item)
-            else:
-                if item.name==BACKSTAGE_NAME: item=add_quality_backstage(item)
-                elif item.name not in LEGENDARY_NAMES: add_quality(item)
-            if item.name not in LEGENDARY_NAMES:
-                item.sell_in -= 1
+            if item.name not in QUALITY_INCREASE_NAMES and item.name not in LEGENDARY_NAMES: remove_quality(item)
+            elif item.name==BACKSTAGE_NAME: item=add_quality_backstage(item)
+            elif item.name not in LEGENDARY_NAMES: add_quality(item)
+            if item.name not in LEGENDARY_NAMES: item.sell_in -= 1
 
 
 class Item:

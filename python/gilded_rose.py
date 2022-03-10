@@ -52,6 +52,8 @@ def add_quality_backstage(item):
         item = add_quality(item, FIVE_DAYS_OR_LESS_QUALITY)
     elif concertInTenDaysLess:
         item = add_quality(item, TEN_DAYS_OR_LESS_QUALITY)
+    # else:
+    #     item = add_quality(item)
     return item
     
 class GildedRose(object):

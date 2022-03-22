@@ -15,7 +15,6 @@ FIVE_DAYS_OR_LESS_QUALITY = 3
 CONJURED = "Conjured"
 QUALITY_CAP = 50
 
-
 def add_quality(item, quality=1):
     qualityUnderMax=item.quality < QUALITY_CAP and item.quality+quality < QUALITY_CAP
 
@@ -52,8 +51,8 @@ def add_quality_backstage(item):
         item = add_quality(item, FIVE_DAYS_OR_LESS_QUALITY)
     elif concertInTenDaysLess:
         item = add_quality(item, TEN_DAYS_OR_LESS_QUALITY)
-    # else:
-    #     item = add_quality(item)
+    else:
+        item = add_quality(item)
     return item
     
 class GildedRose(object):
@@ -63,7 +62,6 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            
             itemIsNormal=item.name not in QUALITY_INCREASE_NAMES and item.name not in LEGENDARY_NAMES
             itemIsBackstage=item.name == BACKSTAGE_NAME
             itemIsLegendary=item.name in LEGENDARY_NAMES
@@ -76,6 +74,7 @@ class GildedRose(object):
                 add_quality(item)
             if not itemIsLegendary:
                 item.sell_in -= 1
+
 class Item:
     def __init__(self, name, sell_in, quality):
         self.name = name

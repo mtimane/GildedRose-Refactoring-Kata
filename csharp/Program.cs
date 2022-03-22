@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GildedRoseKata;
+using System;
 using System.Collections.Generic;
 
 namespace csharp
@@ -30,7 +31,7 @@ namespace csharp
                 new Item
                 {
                     Name = "Backstage passes to a TAFKAL80ETC concert",
-                    SellIn = 5,
+                    SellIn = 5, 
                     Quality = 49
                 },
 				// this conjured item does not work properly yet

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using GildedRoseKata;
+using NUnit.Framework;
 using System.Collections.Generic;
 
 namespace csharp

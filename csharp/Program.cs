@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace csharp
 {
@@ -8,9 +9,10 @@ namespace csharp
         public static void Main(string[] args)
         {
             Console.WriteLine("OMGHAI!");
-
+            
             IList<Item> Items = new List<Item>{
                 new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
+                // Sa qualité augmente avec le temps
                 new Item {Name = "Aged Brie", SellIn = 2, Quality = 0},
                 new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
                 new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80},
@@ -35,10 +37,11 @@ namespace csharp
                 },
 				// this conjured item does not work properly yet
 				new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
+
+
             };
 
             var app = new GildedRose(Items);
-
 
             for (var i = 0; i < 31; i++)
             {
@@ -46,11 +49,13 @@ namespace csharp
                 Console.WriteLine("name, sellIn, quality");
                 for (var j = 0; j < Items.Count; j++)
                 {
-                    System.Console.WriteLine(Items[j]);
+                    Console.WriteLine(Items[j]);
                 }
                 Console.WriteLine("");
                 app.UpdateQuality();
             }
+
+            Console.ReadKey();
         }
     }
 }
